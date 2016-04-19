@@ -1,0 +1,56 @@
+﻿@model List<OGMS.Models.GasModels.GasProdPerLease>
+
+<div class="well">
+    <h4>Gas Production Per Lease Search Results</h4>
+
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Operator Id
+                </th>
+                <th>
+                    Operator Name
+                </th>
+                <th>
+                    Lease Id
+                </th>
+                <th>
+                    Lease Name
+                </th>
+                <th>
+                    Production Average
+                </th>
+                <th>
+                    Total Prod
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var gasProdResults in Model)
+            {
+                <tr>
+                    <td>
+                        @gasProdResults.OperatorId
+                    </td>
+                    <td>
+                        @gasProdResults.OperatorName
+                    </td>
+                    <td>
+                        @gasProdResults.LeaseId
+                    </td>
+                    <td>
+                        @gasProdResults.LeaseName
+                    </td>
+                    <td>
+                        @gasProdResults.ProdAvg
+                    </td>
+                    <td>
+                        @gasProdResults.TotalProd
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

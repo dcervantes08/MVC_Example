@@ -1,0 +1,110 @@
+﻿@model OGMS.Models.TaxModels.TwoYearSearchCriteria
+
+@{
+    ViewBag.Title = "TwoYear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <img src="~/Content/Images/tcot_logo.png" />
+                </div>
+            </div>
+        </div>
+
+        <div class="well">
+            @using (Html.BeginForm("", "", FormMethod.Get, new { @class = "form", @role = "form", @id = "taxForm" }))
+            {
+                <h3>Two YearExempt Search Criteria</h3>
+
+                <fieldset>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@Html.DisplayNameFor(x => x.TaxpayerName)</label>
+                                <div>
+                                    @Html.TextBoxFor(x => x.TaxpayerName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@Html.DisplayNameFor(x => x.OperatorName)</label>
+                                <div>
+                                    @Html.TextBoxFor(x => x.OperatorName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@Html.DisplayNameFor(x => x.County)</label>
+                                <div>
+                                    @Html.TextBoxFor(x => x.County, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@Html.DisplayNameFor(x => x.StartDate)</label>
+                                <div>
+                                    @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", @type = "date" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">@Html.DisplayNameFor(x => x.EndDate)</label>
+                                <div>
+                                    @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", @type = "date" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="button" value="Reset" onclick="ResetForm()" class="btn btn-group btn-warning" />
+                    <input type="button" value="Search" class="btn btn-group btn-primary searchTax" id="taxBtn" />
+                </fieldset>
+            }
+        </div>
+        <div id="taxResults">
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function ResetForm() {
+            var Url = "@Url.Action("TwoYearrExempt", "SeveranceTax")";
+            window.location.assign(Url);
+        }
+
+        $(document).ready(function () {
+            $(".searchTax").click(function () {
+                //var $this = $(this);
+                var searchForm = $('#taxForm').serializeArray();
+                var destinationUrl = '@Url.Action("TwoYearExemptSearchResults", "SeveranceTax")';
+
+                $.ajax({
+                    url: destinationUrl,
+                    type: "GET",
+                    data: searchForm,
+                    beforeSend: function () {
+                        $('#taxBtn').prop("value", "...Searching");
+                        $('#taxBtn').prop("disabled", "true");
+                        setTimeout(function () { $('#taxBtn').prop("value", "...Searching"); }, 10);
+                    },
+                    success: function (data) {
+                        $('#taxBtn').prop("value", "Search");
+                        $('#taxBtn').removeAttr("disabled");
+                        $('#taxResults').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

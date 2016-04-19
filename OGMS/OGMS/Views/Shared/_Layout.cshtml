@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - OGMS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("TCOT OGMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            Gas Production<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("GasInfo", "Gas")">Report Info</a></li>
+                            <li><a href="@Url.Action("PerOperator","Gas")">Per Operator</a></li>
+                            <li><a href="@Url.Action("PerLease","Gas")">Per Lease</a></li>
+                            <li><a href="@Url.Action("PerField", "Gas")">Per Field</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            Oil Production<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("OilReportInfo","Oil")">Report Info</a></li>
+                            <li><a href="@Url.Action("PerOperator","Oil")">Per Operator</a></li>
+                            <li><a href="@Url.Action("PerLease","Oil")">Per Lease</a></li>
+                            <li><a href="@Url.Action("PerField","Oil")">Per Field</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            W-1 Reports<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("W1ReportInfo","W1")">Report Info</a></li>
+                            <li><a href="@Url.Action("PerOperator", "W1")">Per Operator</a></li>
+                            <li><a href="@Url.Action("PerLease", "W1")">Per Lease</a></li>
+                            <li><a href="@Url.Action("PerField", "W1")">Per Field</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            Severance Taxes<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("TaxInfo", "SeveranceTax")">Report Info</a></li>
+                            <li><a href="@Url.Action("LowProducer", "SeveranceTax")">Low Producers</a></li>
+                            <li><a href="@Url.Action("HighCost", "SeveranceTax")">High Cost</a></li>
+                            <li><a href="@Url.Action("TwoYearExempt", "SeveranceTax")">Two-Year Exempt</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - TCOT Oil & Gas Management</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

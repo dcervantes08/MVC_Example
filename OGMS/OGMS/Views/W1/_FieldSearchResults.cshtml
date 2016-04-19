@@ -1,0 +1,56 @@
+﻿@model List<OGMS.Models.W1Models.PermitFiledPerField>
+
+<div class="well">
+    <h4>W1 Permits Filed Per Field Search Results</h4>
+
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Operator Id
+                </th>
+                <th>
+                    Operator Name
+                </th>
+                <th>
+                    Field Id
+                </th>
+                <th>
+                    Field Name
+                </th>
+                <th>
+                    Filed Permits Average
+                </th>
+                <th>
+                    Total Permits 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var gasProdResults in Model)
+            {
+                <tr>
+                    <td>
+                        @gasProdResults.OperatorId
+                    </td>
+                    <td>
+                        @gasProdResults.OperatorName
+                    </td>
+                    <td>
+                        @gasProdResults.FieldNumber
+                    </td>
+                    <td>
+                        @gasProdResults.FieldName
+                    </td>
+                    <td>
+                        @gasProdResults.PermitAvg
+                    </td>
+                    <td>
+                        @gasProdResults.TotalPermits
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

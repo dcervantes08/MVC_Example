@@ -1,0 +1,50 @@
+﻿@model List<OGMS.Models.TaxModels.LowProducerTotals>
+
+<div class="well">
+    <h4>Low Producer Search Results</h4>
+
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Producer
+                </th>
+                <th>
+                    Purhcaser
+                </th>
+                <th>
+                    Operator
+                </th>
+                <th>
+                    Lease
+                </th>
+                <th>
+                    Low Pro Refund Total
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var LowProProdResults in Model)
+            {
+                <tr>
+                    <td>
+                        (@LowProProdResults.ProducerNumber) - @LowProProdResults.ProducerName
+                    </td>
+                    <td>
+                        (@LowProProdResults.PurchaserNumber) - @LowProProdResults.PurchaserNumber
+                    </td>
+                    <td>
+                        (@LowProProdResults.OperatorId) - @LowProProdResults.OperatorName
+                    </td>
+                    <td>
+                        (@LowProProdResults.LeaseNumber) - @LowProProdResults.LeaseName
+                    </td>
+                    <td>
+                        @LowProProdResults.LowProTotal
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

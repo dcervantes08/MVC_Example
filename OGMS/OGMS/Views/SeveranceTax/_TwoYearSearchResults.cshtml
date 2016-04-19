@@ -1,0 +1,44 @@
+﻿@model List<OGMS.Models.TaxModels.TwoYearExemptTotals>
+
+<div class="well">
+    <h4>Two Year Exempt Search Results</h4>
+
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Taxpayer
+                </th>
+                <th>
+                    Operator
+                </th>
+                <th>
+                    Lease
+                </th>
+                <th>
+                    Two Year Exempt Refund Total
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var LowProProdResults in Model)
+            {
+                <tr>
+                    <td>
+                        (@LowProProdResults.TaxpayerNumber) - @LowProProdResults.TaxpayerName
+                    </td>
+                    <td>
+                        (@LowProProdResults.OperatorId) - @LowProProdResults.OperatorName
+                    </td>
+                    <td>
+                        (@LowProProdResults.LeaseNumber) - @LowProProdResults.LeaseName
+                    </td>
+                    <td>
+                        @LowProProdResults.TwoYearTotal
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
